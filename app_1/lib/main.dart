@@ -2,7 +2,6 @@ import 'package:app_1/myapp.dart';
 import 'package:flutter/material.dart';
 // final col = Column(
 
-  
 //   mainAxisAlignment: ,
 //   children: const[
 //   Text('りんご'),
@@ -14,7 +13,7 @@ void main() {
   //             home:  Scaffold(
   //               body: Center(
   //                 child: col,
-  //               ),  
+  //               ),
   //             ),
   //           );
   runApp(MyApp());
