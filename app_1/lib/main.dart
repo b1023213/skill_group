@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+final col = Column(children: const[
+  Text('りんご'),
+  Text('みかん'),
+  Text('バナナ'),
+]);
 void main() {
-  const a = MaterialApp(
+  final a = MaterialApp(
               home:  Scaffold(
                 body: Center(
-                  child: Text('バナナ')
-                ),
+                  child: col,
+                ),  
               ),
             );
   runApp(a);
