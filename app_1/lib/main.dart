@@ -5,23 +5,6 @@ import 'package:app_1/view/odato/niku.dart';
 import 'package:app_1/view/togasi/memo.dart';
 import 'package:app_1/view/rikiya/nikki.dart';
 
-<<<<<<< HEAD
-//   mainAxisAlignment: ,
-//   children: const[
-//   Text('りんご'),
-//   Text('みかん'),
-//   Text('バナナ'),
-// ]);
-void main() {
-  // final a = MaterialApp(
-  //             home:  Scaffold(
-  //               body: Center(
-  //                 child: col,
-  //               ),
-  //             ),
-  //           );
-  runApp(MyApp());
-=======
 void main() {
   runApp(const MaterialApp(home: MyApp()));
 }
@@ -92,5 +75,4 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
->>>>>>> 2e881ab1d5993855dc8820b1c3eeabd389ff59c7
 }
