@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
                   MaterialPageRoute(builder: (context) => const Nikki()),
                 );
               },
-              child: const Text('Button 2'),
+              child: const Text('Button 3'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
                   MaterialPageRoute(builder: (context) => const Memo()),
                 );
               },
-              child: const Text('Button 3'),
+              child: const Text('Button 4'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -68,7 +68,7 @@ class _MyAppState extends State<MyApp> {
                   MaterialPageRoute(builder: (context) => const Niku()),
                 );
               },
-              child: const Text('Button 4'),
+              child: const Text('Button 5'),
             ),
           ],
         ),
