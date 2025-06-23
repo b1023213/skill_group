@@ -68,7 +68,7 @@ class _MyAppState extends State<MyApp> {
                   MaterialPageRoute(builder: (context) => const Niku()),
                 );
               },
-              child: const Text('Button 4'),
+              child: const Text('筋トレ記録'),
             ),
           ],
         ),
