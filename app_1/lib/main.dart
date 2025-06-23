@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Memo()),
+                  MaterialPageRoute(builder: (context) => const Niku()),
                 );
               },
               child: const Text('Button 4'),
@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Niku()),
+                  MaterialPageRoute(builder: (context) => const Memo()),
                 );
               },
               child: const Text('Button 5'),
