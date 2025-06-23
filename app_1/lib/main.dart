@@ -50,15 +50,6 @@ class _MyAppState extends State<MyApp> {
                   MaterialPageRoute(builder: (context) => const Nikki()),
                 );
               },
-              child: const Text('Button 2'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Memo()),
-                );
-              },
               child: const Text('Button 3'),
             ),
             ElevatedButton(
@@ -69,6 +60,15 @@ class _MyAppState extends State<MyApp> {
                 );
               },
               child: const Text('Button 4'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Memo()),
+                );
+              },
+              child: const Text('Button 5'),
             ),
           ],
         ),
