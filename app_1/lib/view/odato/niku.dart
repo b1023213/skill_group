@@ -6,13 +6,7 @@ class Niku extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-<<<<<<< HEAD
       appBar: AppBar(title: const Text('Todo')),
-=======
-      appBar: AppBar(
-        title: const Text('Todo'),
-      ),
->>>>>>> 2e881ab1d5993855dc8820b1c3eeabd389ff59c7
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -25,8 +19,4 @@ class Niku extends StatelessWidget {
       ),
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 2e881ab1d5993855dc8820b1c3eeabd389ff59c7
