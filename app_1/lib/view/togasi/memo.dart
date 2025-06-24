@@ -6,16 +6,14 @@ class Memo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Todo'),
-      ),
+      appBar: AppBar(title: const Text('Memo')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
-            Text('Todo List'),
+            Text('This is the Memo page'),
             SizedBox(height: 20),
-            Text('No tasks available'),
+            Text('No memos available'),
           ],
         ),
       ),
