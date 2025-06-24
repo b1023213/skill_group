@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('MyApp')),
+      appBar: AppBar(title: const Text('技術班練習')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
                   MaterialPageRoute(builder: (context) => const Money()),
                 );
               },
-              child: const Text('Button 1'),
+              child: const Text('家計簿'),
             ),
             ElevatedButton(
               onPressed: () {
