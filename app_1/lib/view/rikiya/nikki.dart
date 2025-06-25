@@ -31,6 +31,24 @@ class _NikkiState extends State<Nikki> {
     );
   }
 
+  // 連続記録日数を計算
+  int _getStreak() {
+    int streak = 0;
+    // 開始日を昨日にする
+    DateTime day = DateTime(
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day,
+    ).subtract(const Duration(days: 1));
+    while (_memoMap.keys.any(
+      (d) => isSameDay(d, day) && (_memoMap[d]?.isNotEmpty ?? false),
+    )) {
+      streak++;
+      day = day.subtract(const Duration(days: 1));
+    }
+    return streak;
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> _pages = [
@@ -48,29 +66,76 @@ class _NikkiState extends State<Nikki> {
             ),
             child: Row(
               children: [
-                // 左半分に記録内容
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.5 - 16,
-                  child: Container(
-                    padding: const EdgeInsets.all(12.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey, width: 2),
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.white,
+                // 左上1/4を枠で囲む
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.5, // 横1/2
+                  height: MediaQuery.of(context).size.height * 0.4, // 縦1/4
+                  margin: const EdgeInsets.only(top: 16.0, left: 16.0),
+                  padding: const EdgeInsets.all(12.0),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey, width: 2),
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.white,
+                  ),
+                  child: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text:
+                              '${_selectedDate.year}年${_selectedDate.month}月${_selectedDate.day}日 の記録：\n',
+                          style: const TextStyle(fontSize: 20),
+                        ),
+                        TextSpan(
+                          text: _memoMap[_selectedDate]?.isNotEmpty == true
+                              ? _memoMap[_selectedDate]
+                              : '記録はありません',
+                          style: const TextStyle(fontSize: 20),
+                        ),
+                      ],
                     ),
-                    child: Text(
-                      _memoMap[_selectedDate]?.isNotEmpty == true
-                          ? '${_selectedDate.year}年${_selectedDate.month}月${_selectedDate.day}日 の記録: ${_memoMap[_selectedDate]}'
-                          : '${_selectedDate.year}年${_selectedDate.month}月${_selectedDate.day}日 の記録はありません',
-                      style: const TextStyle(fontSize: 20),
-                      softWrap: true,
-                      overflow: TextOverflow.visible,
-                      maxLines: 5, // ← ここで高さを制限
+                    softWrap: true,
+                    overflow: TextOverflow.visible,
+                    maxLines: 8,
+                  ),
+                ),
+                // 右上半分に連続記録日数を大きく表示
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.topRight,
+                    margin: const EdgeInsets.only(top: 16.0, right: 16.0),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        // 炎アイコン（背景）
+                        const Text(
+                          '🔥',
+                          style: TextStyle(fontSize: 250), // お好みで調整
+                        ),
+                        // 数字（前面・少し下にずらす）
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 100.0,
+                          ), // ← ここで下方向にずらす
+                          child: Text(
+                            '${_getStreak()}',
+                            style: const TextStyle(
+                              fontSize: 150,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 17, 17, 17),
+                              shadows: [
+                                Shadow(
+                                  blurRadius: 8,
+                                  color: Colors.white,
+                                  offset: Offset(0, 0),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                // 右半分は空白
-                const Expanded(child: SizedBox()),
               ],
             ),
           ),
