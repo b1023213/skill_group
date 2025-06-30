@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart'; //pubspec.yamlに追加が必要
 
 class Memo extends StatefulWidget {
+  //メモ一覧画面
+  // このクラスはメモの一覧を表示し、追加、編集、削除を行うための画面
+  // メモはSharedPreferencesを使用してローカルに保存される
   const Memo({super.key});
 
   @override
@@ -9,16 +12,23 @@ class Memo extends StatefulWidget {
 }
 
 class _MemoState extends State<Memo> {
-  List<String> _memos = [];
+  // メモの状態を管理するクラス
+  List<String> _memos = []; // メモのリスト
 
   @override
   void initState() {
+    // 初期化時にメモをロード
+    // SharedPreferencesからメモを読み込み、状態を更新する
     super.initState();
     _loadMemos();
   }
 
   Future<void> _loadMemos() async {
-    final prefs = await SharedPreferences.getInstance();
+    final prefs =
+        await SharedPreferences.getInstance(); // SharedPreferencesのインスタンスを取得
+    // 'memos'キーで保存されたメモのリストを取得し、
+    // 取得できなかった場合は空のリストを使用
+    // 取得したリストを状態に反映
     setState(() {
       _memos = prefs.getStringList('memos') ?? [];
     });
@@ -31,6 +41,7 @@ class _MemoState extends State<Memo> {
 
   Future<void> _addMemo() async {
     final newMemo = await Navigator.push(
+      // 新しいメモを追加するための画面を表示
       context,
       MaterialPageRoute(builder: (context) => const MemoDetailPage()),
     );
@@ -73,7 +84,8 @@ class _MemoState extends State<Memo> {
       body: _memos.isEmpty
           ? const Center(
               child: Text(
-                'No memos available',
+                // メモがない場合の表示
+                'メモがありません',
                 style: TextStyle(color: Colors.blue),
               ),
             )
@@ -108,11 +120,13 @@ class MemoDetailPage extends StatefulWidget {
 }
 
 class _MemoDetailPageState extends State<MemoDetailPage> {
+  // メモの詳細クラス
   late TextEditingController _controller;
 
   @override
   void initState() {
-    super.initState();
+    super.initState(); // 初期化処理
+    // 初期テキストがあればそれを設定し、なければ空 のテキストフィールドを作成
     _controller = TextEditingController(text: widget.initialText ?? '');
   }
 
@@ -124,9 +138,12 @@ class _MemoDetailPageState extends State<MemoDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    // メモの詳細画面
+    // 入力画面と保存についての処理を行う
     return Scaffold(
       appBar: AppBar(title: const Text('メモ詳細')),
       body: Padding(
+        // メモ内容を入力するためのテキストフィールド
         padding: const EdgeInsets.all(16.0),
         child: TextField(
           controller: _controller,
@@ -138,8 +155,9 @@ class _MemoDetailPageState extends State<MemoDetailPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        // 保存ボタン
         onPressed: () {
-          Navigator.pop(context, _controller.text);
+          Navigator.pop(context, _controller.text); // 入力されたテキストを戻り値として返す
         },
         child: const Icon(Icons.save),
       ),
